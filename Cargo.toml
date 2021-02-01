@@ -8,10 +8,7 @@ edition = "2018"
 
 [dependencies]
 tui = "0.14"
-
-[dependencies.termion]
-version = "1.5"
-optional = true
+termion = { version = "1.5", optional = true }
 
 [features]
 default = ["termion"]
