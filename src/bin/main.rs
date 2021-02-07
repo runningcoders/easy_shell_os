@@ -10,22 +10,18 @@ use std::{
     time::{Duration, SystemTime},
 };
 use termion::{
-    event::{Event, Key},
+    event::Key,
     input::{MouseTerminal, TermRead},
     raw::IntoRawMode,
     screen::AlternateScreen,
 };
-use tokio::{
-    sync::{mpsc, mpsc::Sender},
-    task,
-};
+use tokio::{sync::mpsc, task};
 use tui::{
     backend::TermionBackend,
     layout::{Constraint, Direction, Layout},
     style::Color,
     widgets::{
-        canvas::Rectangle,
-        canvas::{Canvas, Map, MapResolution},
+        canvas::{Canvas, Rectangle},
         Block, Borders,
     },
     Terminal,

@@ -1,8 +1,7 @@
 use termion::event::Key;
-use tokio::macros::support::Future;
+
 use tokio::{
     sync::mpsc::{self, error::SendError, Receiver, Sender},
-    task,
 };
 
 pub struct Events<T> {
