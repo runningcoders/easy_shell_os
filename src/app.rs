@@ -1,3 +1,5 @@
+mod frame;
+
 use termion::event::Key;
 use tokio::sync::mpsc::{self, error::SendError, Receiver, Sender};
 

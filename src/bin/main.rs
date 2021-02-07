@@ -2,11 +2,7 @@ use easy_shell_os::{App, Input};
 use std::{
     error::Error,
     io,
-    sync::{
-        atomic::{AtomicBool, Ordering},
-        Arc,
-    },
-    thread::{self, sleep},
+    thread::sleep,
     time::{Duration, SystemTime},
 };
 use termion::{
