@@ -1,20 +1,17 @@
 use termion::event::Key;
+use tokio::sync::mpsc::{self, error::SendError, Receiver, Sender};
 
-use tokio::{
-    sync::mpsc::{self, error::SendError, Receiver, Sender},
-};
-
-pub struct Events<T> {
+pub struct App<T> {
     id: usize,
     name: String,
     sender: Sender<T>,
     receiver: Receiver<T>,
 }
 
-impl<T> Events<T> {
-    pub fn new(id: usize, name: String, cap: usize) -> Events<T> {
+impl<T> App<T> {
+    pub fn new(id: usize, name: String, cap: usize) -> App<T> {
         let (sender, receiver) = mpsc::channel::<T>(cap);
-        Events {
+        App {
             id,
             name,
             sender,
@@ -33,9 +30,13 @@ impl<T> Events<T> {
     pub async fn receive(&mut self) -> Option<T> {
         self.receiver.recv().await
     }
+
+    pub fn close(&mut self) {
+        self.receiver.close()
+    }
 }
 
-pub enum Event {
+pub enum Input {
     Key(Key),
     Frame,
 }

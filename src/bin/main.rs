@@ -1,4 +1,4 @@
-use easy_shell_os::{event, event::Events};
+use easy_shell_os::{App, Input};
 use std::{
     error::Error,
     io,
@@ -44,12 +44,12 @@ async fn main() -> io::Result<()> {
         color: Color::Yellow,
     };
 
-    let mut events = Events::new(0, "hello".to_string(), 1 << 3);
+    let mut events = App::new(0, "hello".to_string(), 1 << 3);
 
     let sender = events.sender();
     task::spawn(async move {
         while let Some(Ok(key)) = io::stdin().keys().next() {
-            sender.send(event::Event::Key(key)).await;
+            sender.send(Input::Key(key)).await;
         }
     });
 
@@ -82,7 +82,7 @@ async fn main() -> io::Result<()> {
             if next > 0 {
                 sleep(Duration::from_millis(next as u64))
             }
-            frame_sender.send(event::Event::Frame).await;
+            frame_sender.send(Input::Frame).await;
         }
     });
 
@@ -90,7 +90,7 @@ async fn main() -> io::Result<()> {
 
     while let Some(event) = events.receive().await {
         match event {
-            event::Event::Key(key) => match key {
+            Input::Key(key) => match key {
                 Key::Esc => {
                     break;
                 }
@@ -108,11 +108,12 @@ async fn main() -> io::Result<()> {
                 }
                 _ => {}
             },
-            event::Event::Frame => {
+            Input::Frame => {
                 tx.send(ball.clone()).await;
             }
         }
     }
 
+    events.close();
     Ok(())
 }
