@@ -40,9 +40,9 @@ async fn main() -> io::Result<()> {
         color: Color::Yellow,
     };
 
-    let mut events = App::new(0, "hello".to_string(), 1 << 3);
+    let mut app = App::new(0, "hello".to_string(), 1 << 3);
 
-    let sender = events.sender();
+    let sender = app.sender();
     task::spawn(async move {
         while let Some(Ok(key)) = io::stdin().keys().next() {
             sender.send(Input::Key(key)).await;
@@ -50,7 +50,7 @@ async fn main() -> io::Result<()> {
     });
 
     let (tx, mut rx) = mpsc::channel(1);
-    let frame_sender = events.sender();
+    let frame_sender = app.sender();
     task::spawn(async move {
         while let Some(ball) = rx.recv().await {
             let start_time = SystemTime::now();
@@ -84,7 +84,7 @@ async fn main() -> io::Result<()> {
 
     tx.send(ball.clone()).await;
 
-    while let Some(event) = events.receive().await {
+    while let Some(event) = app.receive().await {
         match event {
             Input::Key(key) => match key {
                 Key::Esc => {
@@ -110,6 +110,6 @@ async fn main() -> io::Result<()> {
         }
     }
 
-    events.close();
+    app.close();
     Ok(())
 }
