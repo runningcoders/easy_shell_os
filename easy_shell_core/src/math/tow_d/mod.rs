@@ -1,6 +1,6 @@
 mod rectangle;
 
-use crate::util::math::fraction::Fraction;
+use crate::math::fraction::Fraction;
 use std::fmt::{Display, Formatter};
 use std::num::ParseIntError;
 use std::str::FromStr;

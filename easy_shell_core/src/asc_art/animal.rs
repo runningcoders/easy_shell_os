@@ -1,4 +1,4 @@
-use crate::util::asc_art::Printer;
+use crate::asc_art::Printer;
 use std::fmt::{Result, Write};
 
 enum Animal {

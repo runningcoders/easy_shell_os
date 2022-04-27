@@ -1,4 +1,4 @@
-use crate::util::math::tow_d::{Point, Vector};
+use crate::math::tow_d::{Point, Vector};
 use std::num::ParseIntError;
 use std::str::FromStr;
 
@@ -130,7 +130,7 @@ impl FromStr for Rectangle {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::util::math::fraction;
+    use crate::math::fraction;
     use std::borrow::Borrow;
 
     #[test]
