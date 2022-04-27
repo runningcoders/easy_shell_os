@@ -1,4 +1,4 @@
-mod app;
-pub mod util;
+#[macro_use]
+extern crate lazy_static;
 
-pub use app::{App, Input};
+mod util;
