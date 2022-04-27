@@ -52,7 +52,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "easy_shell_os"
+name = "easy_shell_core"
 version = "0.1.0"
 dependencies = [
  "crossterm",
