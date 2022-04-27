@@ -1,4 +1,5 @@
 [workspace]
 members = [
-    "easy_shell_core"
+    "easy_shell_core",
+    "easy_shell_logic"
 ]

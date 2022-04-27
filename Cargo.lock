@@ -57,10 +57,17 @@ version = "0.1.0"
 dependencies = [
  "crossterm",
  "lazy_static",
- "serde",
- "serde_json",
  "tokio",
  "tui",
+]
+
+[[package]]
+name = "easy_shell_logic"
+version = "0.1.0"
+dependencies = [
+ "lazy_static",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
