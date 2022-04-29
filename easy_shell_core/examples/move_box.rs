@@ -1,6 +1,8 @@
-use std::io;
+#[async_std::main]
+async fn main() {
+    say_hello().await;
+}
 
-#[tokio::main]
-async fn main() -> io::Result<()> {
-    Ok(())
+async fn say_hello() {
+    println!("Hello, world!");
 }
