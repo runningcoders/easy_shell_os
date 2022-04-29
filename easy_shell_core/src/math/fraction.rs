@@ -4,20 +4,14 @@ use std::num::ParseIntError;
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign};
 use std::str::FromStr;
 
-lazy_static! {
-    pub static ref ZERO: Fraction = {
-        Fraction {
-            numerator: 0,
-            denominator: 1,
-        }
-    };
-    pub static ref ONE: Fraction = {
-        Fraction {
-            numerator: 1,
-            denominator: 1,
-        }
-    };
-}
+const ZERO: Fraction = Fraction {
+    numerator: 0,
+    denominator: 1,
+};
+const ONE: Fraction = Fraction {
+    numerator: 1,
+    denominator: 1,
+};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Fraction {
@@ -78,7 +72,7 @@ impl Fraction {
 
 impl Default for Fraction {
     fn default() -> Self {
-        *ZERO
+        ZERO
     }
 }
 
@@ -224,17 +218,17 @@ mod tests {
 
     #[test]
     fn display() {
-        assert_eq!("0", format!("{}", *ZERO));
-        assert_eq!("1", format!("{}", *ONE));
+        assert_eq!("0", format!("{}", ZERO));
+        assert_eq!("1", format!("{}", ONE));
         assert_eq!("1/2", format!("{}", Fraction::new(1, 2)));
     }
 
     #[test]
     fn from_str() {
         let a: Fraction = "0".parse().unwrap();
-        assert_eq!(a, *ZERO);
+        assert_eq!(a, ZERO);
         let a = Fraction::from_str("1").unwrap();
-        assert_eq!(a, *ONE);
+        assert_eq!(a, ONE);
         let a = Fraction::from_str("-1 / 2").unwrap();
         assert_eq!(a, Fraction::new(-1, 2));
     }
@@ -243,28 +237,28 @@ mod tests {
     fn add() {
         let a = Fraction::from_str("-1/2").unwrap();
         let a1 = Fraction::from_str("1/2").unwrap();
-        assert_eq!(a + a1, *ZERO);
+        assert_eq!(a + a1, ZERO);
     }
 
     #[test]
     fn sub() {
         let a = Fraction::from_str("1/3").unwrap();
         let a1 = Fraction::from_str("1/3").unwrap();
-        assert_eq!(a - a1, *ZERO);
+        assert_eq!(a - a1, ZERO);
     }
 
     #[test]
     fn mul() {
         let a = Fraction::from_str("1/2").unwrap();
         let a1 = Fraction::from_str("2").unwrap();
-        assert_eq!(a * a1, *ONE);
+        assert_eq!(a * a1, ONE);
     }
 
     #[test]
     fn div() {
         let a = Fraction::from_str("1/2").unwrap();
         let a1 = Fraction::from_str("1/2").unwrap();
-        assert_eq!(a / a1, *ONE);
+        assert_eq!(a / a1, ONE);
     }
 
     #[test]
@@ -273,6 +267,6 @@ mod tests {
         let b = Fraction::from_str("1").unwrap();
         assert!(a > b);
         assert!(b < a);
-        assert_eq!(b, *ONE);
+        assert_eq!(b, ONE);
     }
 }
