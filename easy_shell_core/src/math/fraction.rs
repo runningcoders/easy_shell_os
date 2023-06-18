@@ -4,11 +4,11 @@ use std::num::ParseIntError;
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign};
 use std::str::FromStr;
 
-const ZERO: Fraction = Fraction {
+pub const ZERO: Fraction = Fraction {
     numerator: 0,
     denominator: 1,
 };
-const ONE: Fraction = Fraction {
+pub const ONE: Fraction = Fraction {
     numerator: 1,
     denominator: 1,
 };

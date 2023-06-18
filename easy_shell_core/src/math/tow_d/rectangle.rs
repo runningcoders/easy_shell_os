@@ -138,8 +138,8 @@ mod tests {
         let (dx, dy) = ("2".parse().unwrap(), "1".parse().unwrap());
         let (p1, p2, p3, p4) = (
             Point::default(),
-            Point::new(dx, *fraction::ZERO),
-            Point::new(*fraction::ZERO, dy),
+            Point::new(dx, fraction::ZERO),
+            Point::new(fraction::ZERO, dy),
             Point::new(dx, dy),
         );
 
@@ -157,8 +157,8 @@ mod tests {
             Rectangle::with_diagonal(Point::default(), Vector::new(dx, dy).borrow()),
             Rectangle::new(
                 Point::default(),
-                Point::new(dx, *fraction::ZERO),
-                Point::new(*fraction::ZERO, dy),
+                Point::new(dx, fraction::ZERO),
+                Point::new(fraction::ZERO, dy),
                 Point::new(dx, dy)
             )
         );
@@ -170,7 +170,7 @@ mod tests {
             Rectangle::from_str("[(0, 0), (1, 0), (1, 1), (0, 1)]").unwrap(),
             Rectangle::with_diagonal(
                 Point::default(),
-                Vector::new(*fraction::ONE, *fraction::ONE).borrow()
+                Vector::new(fraction::ONE, fraction::ONE).borrow()
             )
         )
     }
